@@ -1,0 +1,97 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://email/com/web-service" targetNamespace="http://email/com/web-service" elementFormDefault="qualified">
+
+    <xs:complexType name="email">
+        <xs:sequence>
+            <xs:element type="xs:string" name="address" minOccurs="0"/>
+            <xs:element type="xs:string" name="subject" minOccurs="0"/>
+            <xs:element type="xs:string" name="body" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="code">
+        <xs:sequence>
+            <xs:element type="xs:string" name="codeStatus" minOccurs="0"/>
+            <xs:element type="xs:string" name="codeMessage" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="emailsList">
+        <xs:sequence>
+            <xs:element type="tns:email" name="email" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="getEmailByAddressRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="address" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getEmailBySubjectRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="subject" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getEmailResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:code" name="code" minOccurs="0"/>
+                <xs:element type="tns:email" name= "email"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteEmailRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:int" name="id" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteEmailResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:code" name="code" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllEmailRequest">
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllEmailResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:code" name="code" minOccurs="0"/>
+                <xs:element type="tns:emailsList" name="emailsList" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="setEmailRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="address" type="xs:string"/>
+                <xs:element name="subject" type="xs:string"/>
+                <xs:element name="body" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="setEmailResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:code" name="code" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
